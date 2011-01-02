@@ -196,7 +196,7 @@ var http = new XMLHttpRequest();
     ---state:broadcast 共享操作
     ---state:tracking-emailed 在发送了email之后发送这个
 
-===删除编辑===
+===标签删除===
   * 删除一个标签
   * 请求URL:https://www.google.com/reader/api/0/disable-tag
   * 方法:POST
