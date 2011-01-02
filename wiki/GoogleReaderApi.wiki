@@ -183,12 +183,28 @@ var http = new XMLHttpRequest();
   * 方法:POST
   * 参数:
     # client: 客户端名称
+    # T:token字符串
     # i:条目id,一般为 tag:google.com,2005:reader/item/e3bf323eb39b90f5
-    # a:标示一个add类型操作，设置已读，未读状态都是这个
-    # r:标示一个remove类型操作，和a参数同时只允许一个存在
     # async：是否异步操作 （true|false）
-    # s:
+    # s:对应的订阅 如 feed/http://feeds.feedburner.com/ruanyifeng
+    # r:标示一个remove类型操作，和a参数同时只允许一个存在，比如取消分享，加星
+    # a:标示一个add类型操作，设置已读，未读状态都是这个,一般为user/-/state/com.google/{state}
+    较常用的
+    ---state:read 设为已读
+    ---state:kept-unread 设置为未读
+    ---state:starred 标星操作
+    ---state:broadcast 共享操作
+    ---state:tracking-emailed 在发送了email之后发送这个
 
+===删除编辑===
+  * 删除一个标签
+  * 请求URL:https://www.google.com/reader/api/0/disable-tag
+  * 方法:POST
+  * 参数:
+    # client: 客户端名称
+    # T:token字符串
+    # s:标签id 格式：user/02968909773540115760/label/{tag}
+    # t：标签名 {tag}
 
 
 ===订阅编辑===
