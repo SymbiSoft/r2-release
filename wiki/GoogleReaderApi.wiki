@@ -4,7 +4,7 @@
 在开发R2过程中总结出来的 api，虽然已经有了pyrfeed的分析在前了，这里提供一个实践版。
 
 
-== * 客户端认证 ==
+== 客户端认证 ==
   * 这一部分是google通用的clientLogin机制
   * 请求URL:https://www.google.com/accounts/ClientLogin
   * 方法:POST
@@ -48,7 +48,7 @@
    }}}
 
 
-== * 获取token ==
+== 获取token ==
   * token使用在提交写请求的时候需要的一个认证信息
   * 请求URL:https://www.google.com/reader/api/0/token
   * 方法:GET
@@ -75,9 +75,9 @@
     http.send()
   }}}
 
-== * 获取列表==
+== 获取列表==
 
-===# 标签列表===
+===标签列表===
   * 获取你的所有标签信息
   * 请求URL:https://www.google.com/reader/api/0/tag/list
   * 方法:GET
@@ -97,8 +97,7 @@ var http = new XMLHttpRequest();
             }
         }
     }
-    console.log("http GET "+source)
-    http.open("GET", source);
+    http.open("GET", “https://www.google.com/reader/api/0/tag/list?output=json”);
     http.setRequestHeader("Authorization","GoogleLogin auth="+auth);
     http.setRequestHeader("Cookie","SID="+sid);
     http.setRequestHeader("accept-encoding", "gzip, deflate")
@@ -107,7 +106,7 @@ var http = new XMLHttpRequest();
 
 
 
-===# 订阅列表===
+===订阅列表===
   * 获取你的所有订阅信息
   * 请求URL:https://www.google.com/reader/api/0/subscription/list
   * 方法:GET
@@ -127,15 +126,14 @@ var http = new XMLHttpRequest();
             }
         }
     }
-    console.log("http GET "+source)
-    http.open("GET", source);
+    http.open("GET", “https://www.google.com/reader/api/0/subscription/list?output=json”);
     http.setRequestHeader("Authorization","GoogleLogin auth="+auth);
     http.setRequestHeader("Cookie","SID="+sid);
     http.setRequestHeader("accept-encoding", "gzip, deflate")
     http.send()
   }}}
 
-===# 设置偏好列表===
+===设置偏好列表===
   * 获取你的所有设置信息
   * 请求URL:https://www.google.com/reader/api/0/preference/list
   * 方法:GET
@@ -146,7 +144,7 @@ var http = new XMLHttpRequest();
   * 返回：设置偏好的键值对列表，如果你已登录google,点击查看https://www.google.com/reader/api/0/preference/list?output=json
   * 代码示范:
   {{{
-var http = new XMLHttpRequest();
+    var http = new XMLHttpRequest();
     http.onreadystatechange = function() {
         if (http.readyState == XMLHttpRequest.DONE) {
             if(http.status==200){
@@ -155,12 +153,22 @@ var http = new XMLHttpRequest();
             }
         }
     }
-    console.log("http GET "+source)
-    http.open("GET", source);
+    http.open("GET", “https://www.google.com/reader/api/0/preference/list?output=json”);
     http.setRequestHeader("Authorization","GoogleLogin auth="+auth);
     http.setRequestHeader("Cookie","SID="+sid);
     http.setRequestHeader("accept-encoding", "gzip, deflate")
     http.send()
   }}}
 
-===# 未读计数列表===
+===未读计数列表===
+  * 获取标签和列表的未读数目，在网页版googlereader中，定时运行
+  * 请求URL:https://www.google.com/reader/api/0/unread-count
+  * 方法:GET
+  * 参数:
+    # client: 客户端名称
+    # all: 布尔值，是否获取所有标签和列表的未读数
+    # allcomments：布尔值，是否获取所有评论的未读数
+    # ck：时间戳
+    # output:输出结果类型，如json
+  * 返回：如果你已登录google,点击查看https://www.google.com/reader/api/0/unread-count?allcomments=true&output=json&ck=1293954081436&client=scroll
+  * 代码示范：参考订阅列表
