@@ -3,7 +3,7 @@
 
 == 介绍 ==
 
-在开发R2过程中总结出来的 api，虽然已经有了pyrfeed的分析在前了，但是还是有不少新的特性没有介绍的。
+在开发R2过程中总结出来的 api，虽然已经有了pyrfeed的分析在前了，这里提供一个实践版。
 
 
 == 客户端认证 ==
@@ -16,7 +16,7 @@
     # Passwd = youpassword
     # service=reader
     # source = clientstr (如：J-R2-1.0)
-  * 返回：认证文本字符串,auth和sid这是两个比较重要的标识，在以后的api请求中，都必须在header中带有这两个信息
+  * 返回：认证文本字符串,auth和sid这是两个比较重要的标识，在以后的api请求中，都必须在header中带有这两个信息,同时cookie中也要设置下SID
 
   * 代码示范:
    {{{
@@ -75,4 +75,15 @@
     http.setRequestHeader("Cookie","SID="+sid);
     http.send()
   }}}
+
+==获取列表==
+
+===标签列表===
+===订阅列表===
+===设置偏好列表===
+===未读计数列表===
+
+
+
+
 
