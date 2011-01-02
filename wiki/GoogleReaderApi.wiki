@@ -174,3 +174,15 @@ var http = new XMLHttpRequest();
     # output:输出结果类型，如json
   * 返回：如果你已登录google,点击查看https://www.google.com/reader/api/0/unread-count?allcomments=true&output=json&ck=1293954081436&client=scroll
   * 代码示范：参考订阅列表
+
+==可编辑请求api==
+
+===标签编辑===
+
+===订阅编辑===
+
+===评论===
+
+===笔记===
+
+===设置偏好===
