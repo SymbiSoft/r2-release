@@ -1,8 +1,6 @@
 #labels googlereaderapi
 =google reader api 介绍=
 
-== 介绍 ==
-
 在开发R2过程中总结出来的 api，虽然已经有了pyrfeed的分析在前了，这里提供一个实践版。
 
 
@@ -57,6 +55,7 @@
   * 参数:
     # client: 客户端名称
     # ck：时间戳
+  * 返回token字符串
   * 代码示范:
   {{{
     var auth = //之前clientLogin获得的
@@ -79,11 +78,38 @@
 ==获取列表==
 
 ===标签列表===
+  * 获取你的所有标签信息
+  * 请求URL:https://www.google.com/reader/api/0/tag/list
+  * 方法:GET
+  * 参数:
+    # client: 客户端名称
+    # ck：时间戳
+    # output:输出结果类型，如json
+  * 返回：如果你已登录google,点击查看https://www.google.com/reader/api/0/tag/list?output=json
+  * 代码示范:
+  {{{
+var http = new XMLHttpRequest();
+    http.onreadystatechange = function() {
+        if (http.readyState == XMLHttpRequest.DONE) {
+            if(http.status==200){
+                var result = JSON.parse(http.responseText)['tags']
+                //
+            }
+        }
+    }
+    console.log("http GET "+source)
+    http.open("GET", source);
+    http.setRequestHeader("Authorization","GoogleLogin auth="+auth);
+    http.setRequestHeader("Cookie","SID="+sid);
+    http.setRequestHeader("accept-encoding", "gzip, deflate")
+    http.send()
+  }}}
+
+
+
 ===订阅列表===
 ===设置偏好列表===
 ===未读计数列表===
-
-
 
 
 
