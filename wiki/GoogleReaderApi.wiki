@@ -4,7 +4,7 @@
 在开发R2过程中总结出来的 api，虽然已经有了pyrfeed的分析在前了，这里提供一个实践版。
 
 
-== 客户端认证 ==
+== * 客户端认证 ==
   * 这一部分是google通用的clientLogin机制
   * 请求URL:https://www.google.com/accounts/ClientLogin
   * 方法:POST
@@ -48,7 +48,7 @@
    }}}
 
 
-== 获取token ==
+== * 获取token ==
   * token使用在提交写请求的时候需要的一个认证信息
   * 请求URL:https://www.google.com/reader/api/0/token
   * 方法:GET
@@ -75,9 +75,9 @@
     http.send()
   }}}
 
-==获取列表==
+== * 获取列表==
 
-===标签列表===
+===# 标签列表===
   * 获取你的所有标签信息
   * 请求URL:https://www.google.com/reader/api/0/tag/list
   * 方法:GET
@@ -107,7 +107,7 @@ var http = new XMLHttpRequest();
 
 
 
-===订阅列表===
+===# 订阅列表===
   * 获取你的所有订阅信息
   * 请求URL:https://www.google.com/reader/api/0/subscription/list
   * 方法:GET
@@ -135,7 +135,7 @@ var http = new XMLHttpRequest();
     http.send()
   }}}
 
-===设置偏好列表===
+===# 设置偏好列表===
   * 获取你的所有设置信息
   * 请求URL:https://www.google.com/reader/api/0/preference/list
   * 方法:GET
@@ -163,4 +163,4 @@ var http = new XMLHttpRequest();
     http.send()
   }}}
 
-===未读计数列表===
+===# 未读计数列表===
