@@ -16,7 +16,7 @@
     # Passwd = youpassword
     # service=reader
     # source = clientstr (如：J-R2-1.0)
-  * 返回：认证文本字符串
+  * 返回：认证文本字符串,auth和sid这是两个比较重要的标识，在以后的api请求中，都必须在header中带有这两个信息
 
   * 代码示范:
    {{{
@@ -48,3 +48,31 @@
     http.setRequestHeader("Content-Length", auth_params.length);
     http.send( auth_params );
    }}}
+
+
+== 获取token ==
+  * token使用在提交写请求的时候需要的一个认证信息
+  * 请求URL:https://www.google.com/reader/api/0/token
+  * 方法:GET
+  * 参数:
+    # client: 客户端名称
+    # ck：时间戳
+  * 代码示范:
+  {{{
+    var auth = //之前clientLogin获得的
+    var sid = //之前clientLogin获得的
+    var token
+    var http = new XMLHttpRequest();
+    http.onreadystatechange = function() {
+        if (http.readyState == XMLHttpRequest.DONE) {
+            if(http.status==200){
+                token = http.responseText
+            }
+        }
+    }
+    http.open("GET", "https://www.google.com/reader/api/0/token?client=scroll&ck="+Number(new Date()))
+    http.setRequestHeader("Authorization","GoogleLogin auth="+auth);
+    http.setRequestHeader("Cookie","SID="+sid);
+    http.send()
+  }}}
+
