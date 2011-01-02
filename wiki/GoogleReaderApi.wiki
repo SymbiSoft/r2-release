@@ -174,8 +174,36 @@ var http = new XMLHttpRequest();
     # s:标签id 格式：user/02968909773540115760/label/{tag}
     # t：标签名 {tag}
 
+===标签新增===
+  * 给一个条目新增一个标签
+  * 请求URL:https://www.google.com/reader/api/0/subscription/edit
+  * 方法:POST
+  * 参数:
+    # client: 客户端名称
+    # T:token字符串
+    # ac:edit action类型
+    # a:要增加的标签id 格式：user/02968909773540115760/label/{tag}
+    # s:订阅条目的id 如 feed/http://feeds.feedburner.com/ruanyifeng
 
-===订阅编辑===
+===新增订阅===
+  * 增加一个新的订阅
+  * 请求URL:https://www.google.com/reader/api/0/subscription/quickadd
+  * 方法:POST
+  * 参数:
+    # client: 客户端名称
+    # T:token字符串
+    # quickadd:订阅url 如 http://feeds.feedburner.com/ruanyifeng
+ 
+===取消订阅===
+  * 增加一个新的订阅
+  * 请求URL:ttps://www.google.com/reader/api/0/subscription/edit
+  * 方法:POST
+  * 参数:
+    # client: 客户端名称
+    # T:token字符串
+    # ac:unsubscribe
+    # s:订阅id 如feed/http://laiba.tianya.cn/laiba/Feed
+
 
 ===评论===
 
