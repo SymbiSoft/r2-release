@@ -117,23 +117,7 @@ var http = new XMLHttpRequest();
     # ck：时间戳
     # output:输出结果类型，如json
   * 返回：如果你已登录google,点击查看https://www.google.com/reader/api/0/subscription/list?output=json
-  * 代码示范:
-  {{{
-var http = new XMLHttpRequest();
-    http.onreadystatechange = function() {
-        if (http.readyState == XMLHttpRequest.DONE) {
-            if(http.status==200){
-                var result = JSON.parse(http.responseText)['subscriptions']
-                //
-            }
-        }
-    }
-    http.open("GET", “https://www.google.com/reader/api/0/subscription/list?output=json”);
-    http.setRequestHeader("Authorization","GoogleLogin auth="+auth);
-    http.setRequestHeader("Cookie","SID="+sid);
-    http.setRequestHeader("accept-encoding", "gzip, deflate")
-    http.send()
-  }}}
+  * 代码示范:参考标签列表
 
 ===设置偏好列表===
   * 获取你的所有设置信息
@@ -144,23 +128,7 @@ var http = new XMLHttpRequest();
     # ck：时间戳
     # output:输出结果类型，如json
   * 返回：设置偏好的键值对列表，如果你已登录google,点击查看https://www.google.com/reader/api/0/preference/list?output=json
-  * 代码示范:
-  {{{
-    var http = new XMLHttpRequest();
-    http.onreadystatechange = function() {
-        if (http.readyState == XMLHttpRequest.DONE) {
-            if(http.status==200){
-                var result = JSON.parse(http.responseText)['prefs']
-                //
-            }
-        }
-    }
-    http.open("GET", “https://www.google.com/reader/api/0/preference/list?output=json”);
-    http.setRequestHeader("Authorization","GoogleLogin auth="+auth);
-    http.setRequestHeader("Cookie","SID="+sid);
-    http.setRequestHeader("accept-encoding", "gzip, deflate")
-    http.send()
-  }}}
+  * 代码示范:参考标签列表
 
 ===未读计数列表===
   * 获取标签和列表的未读数目，在网页版googlereader中，定时运行
@@ -173,7 +141,7 @@ var http = new XMLHttpRequest();
     # ck：时间戳
     # output:输出结果类型，如json
   * 返回：如果你已登录google,点击查看https://www.google.com/reader/api/0/unread-count?allcomments=true&output=json&ck=1293954081436&client=scroll
-  * 代码示范：参考订阅列表
+  * 代码示范：参考标签列表
 
 ==可编辑Api==
 
