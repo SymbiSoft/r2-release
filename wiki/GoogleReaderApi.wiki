@@ -195,8 +195,8 @@ var http = new XMLHttpRequest();
     # quickadd:订阅url 如 http://feeds.feedburner.com/ruanyifeng
  
 ===取消订阅===
-  * 增加一个新的订阅
-  * 请求URL:ttps://www.google.com/reader/api/0/subscription/edit
+  * 取消一个订阅
+  * 请求URL:https://www.google.com/reader/api/0/subscription/edit
   * 方法:POST
   * 参数:
     # client: 客户端名称
@@ -205,7 +205,40 @@ var http = new XMLHttpRequest();
     # s:订阅id 如feed/http://laiba.tianya.cn/laiba/Feed
 
 
-===评论===
+===新增评论===
+  * 评论必须在你推荐功效一个文章后才能用
+  * 请求URL:https://www.google.com/reader/api/0/comment/edit
+  * 方法:POST
+  * 参数:
+    # client: 客户端名称
+    # T:token字符串
+    # action:addcomment
+    # i:文章的ID 如 tag:google.com,2005:reader/item/e3bf323eb39b90f5
+ 
+===修改评论===
+  * 修改自己的评论
+  * 请求URL:https://www.google.com/reader/api/0/comment/edit
+  * 方法:POST
+  * 参数:
+    # client: 客户端名称
+    # T:token字符串
+    # action:editcomment
+    # i:文章的ID 如 tag:google.com,2005:reader/item/e3bf323eb39b90f5
+    # ci:评论ID
+    # comment:修改后的评论内容
+
+
+===删除评论===
+  * 删除自己的评论
+  * 请求URL:https://www.google.com/reader/api/0/comment/edit
+  * 方法:POST
+  * 参数:
+    # client: 客户端名称
+    # T:token字符串
+    # action:deletecomment
+    # i:文章的ID 如 tag:google.com,2005:reader/item/e3bf323eb39b90f5
+    # ci:评论ID
+
 
 ===笔记===
 
