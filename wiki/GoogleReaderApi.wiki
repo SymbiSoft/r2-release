@@ -1,4 +1,4 @@
-#labels googlereaderapi
+#labels googlereaderapi,rest,api,googlereader
 =google reader api 介绍=
 
 <wiki:toc max_depth="3" /> 
@@ -240,6 +240,48 @@ var http = new XMLHttpRequest();
     # ci:评论ID
 
 
-===笔记===
+===新增笔记===
+  * 新增一个笔记
+  * 请求URL:https://www.google.com/reader/api/0/item/edit
+  * 方法:POST
+  * 参数:
+    # client: 客户端名称
+    # ck:时间戳
+    # T:token字符串
+    # linkify:true
+    # share:true 是否共享
+    # snippet:笔记内容
+    # title:笔记标题
+
+===删除笔记===
+  * 删除一个笔记
+  * 请求URL:https://www.google.com/reader/api/0/item/delete
+  * 方法:POST
+  * 参数:
+    # client: 客户端名称
+    # ck:时间戳
+    # T:token字符串
+    # i:笔记id
+
+===笔记评论===
+  * 新建一个笔记来对一篇文章进行评论
+  * 请求URL:https://www.google.com/reader/api/0/item/edit
+  * 方法:POST
+  * 参数:
+    # client: 客户端名称
+    # ck:时间戳
+    # T:token字符串
+    # linkify:false
+    # share:true 
+    # snippet:引用文章的全文内容
+    # annotation：评论内容
+    # srcTitle:源订阅条目的标题
+    # srcUrl：源订阅条目的feed url
+    # title:源文章标题
+    # url:源文章url
+
+
+
+
 
 ===设置偏好===
