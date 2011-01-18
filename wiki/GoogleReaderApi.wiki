@@ -1,4 +1,4 @@
-#labels googlereaderapi,rest,api,googlereader
+#labels googlereaderapi,rest,api,googlereader,Featured
 =google reader api 介绍=
 
 <wiki:toc max_depth="3" /> 
