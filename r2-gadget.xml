@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <ModulePrefs title="SlideShare" title_url="http://www.slideshare.net" author="jamiesun" author_email="jamiesun.net@gmail.com" author_affiliation="SlideShare" author_location="hangsha, China" description="Share SlideShare on your google code wiki page." author_link="http://code.google.com/p/jamiesun/" height="320"> 
+  </ModulePrefs>
+  <Content type="html"> 
+  <![CDATA[ 
+                     <div style="width:425px" id="__ss_6690853"><strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/jamiesun/r2-s60-googlereader-client" title="R2 s60 googlereader client">R2 s60 googlereader client</a></strong><object id="__sse6690853" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=r2-110124231937-phpapp01&rel=0&stripped_title=r2-s60-googlereader-client&userName=jamiesun" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed name="__sse6690853" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=r2-110124231937-phpapp01&rel=0&stripped_title=r2-s60-googlereader-client&userName=jamiesun" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object><div style="padding:5px 0 12px">View more <a href="http://www.slideshare.net/">presentations</a> from <a href="http://www.slideshare.net/jamiesun">jamiesun</a>.</div></div> 
+
+  ]]> 
+  </Content> 
+  
+</Module>
