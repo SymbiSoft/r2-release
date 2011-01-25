@@ -1,2 +1,2 @@
 #labels Featured
-<wiki:gadget url="http://r2-release.googlecode.com/svn/trunk/r2-gadget.xml" width="680" height="520" border="0" /> 
+<wiki:gadget url="http://r2-release.googlecode.com/svn/trunk/r2-gadget.xml" width="720" height="520" border="0" /> 
