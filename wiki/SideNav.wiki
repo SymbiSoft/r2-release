@@ -1,4 +1,3 @@
-#labels Featured
   * [SideShare Sideshare]
   * [R2 Release note]
   * [GoogleReaderApi google reader api]
