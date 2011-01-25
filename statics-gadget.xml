@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <ModulePrefs title="SlideShare" title_url="http://www.slideshare.net" author="jamiesun" author_email="jamiesun.net@gmail.com" author_affiliation="SlideShare" author_location="hangsha, China" description="Share SlideShare on your google code wiki page." author_link="http://code.google.com/p/jamiesun/" height="320"> 
+  </ModulePrefs>
+  <Content type="html"> 
+  <![CDATA[ 
+<div style="width:425px" id="__ss_6692747"><strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/jamiesun/static-server" title="Static server介绍">Static server介绍</a></strong><object id="__sse6692747" width="640" height="480"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=static-server-110125032125-phpapp02&stripped_title=static-server&userName=jamiesun" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed name="__sse6692747" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=static-server-110125032125-phpapp02&stripped_title=static-server&userName=jamiesun" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="480"></embed></object><div style="padding:5px 0 12px">View more <a href="http://www.slideshare.net/">presentations</a> from <a href="http://www.slideshare.net/jamiesun">sun jamie</a>.</div></div>
+  ]]> 
+  </Content> 
+  
+</Module>
