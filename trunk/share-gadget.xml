@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <ModulePrefs title="weibo" title_url="http://t.sina.com.cn" author="jamiesun" author_email="jamiesun.net@gmail.com" author_affiliation="Sina Weibo" author_location="hangsha, China" description="" author_link="http://code.google.com/p/r2-release/" height="480"> 
+  </ModulePrefs>
+  <Content type="html"> 
+  <![CDATA[ 
+<a style="color:#333333;text-align:center;font-size:12px;" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://v.t.sina.com.cn/share/share.php?',u=d.location.href,p=['url=',e(u),'&title=',e(d.title),'&appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"><div style=" cursor:pointer;">            <img src="http://timg.sjs.sinajs.cn/t3/style/images/toolbar/b_red.gif" style="display:block;margin:0 auto 4px;border:0;vertical-align:middle;"/>            <span style="text-align:center;">分享到新浪微博</span>        </div></a>
+  ]]> 
+  </Content> 
+  
+</Module>
