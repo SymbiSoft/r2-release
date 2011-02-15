@@ -3,6 +3,8 @@
 
 <wiki:toc max_depth="3" /> 
 
+[http://v.t.sina.com.cn/share/share.php?url=http://code.google.com/p/r2-release/w/edit/GoogleReaderApi&title=&appkey=2924220432 http://r2-release.googlecode.com/svn/trunk/sharesina.png]
+
 在开发R2过程中总结出来的 api，虽然已经有了pyrfeed的分析在前了，这里提供一个实践版。
 
 
