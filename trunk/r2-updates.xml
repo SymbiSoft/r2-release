@@ -2,7 +2,7 @@
 <items>
     <version>
         <title>R2-Touch_snapshot_20110316</title>
-        <url>http://r2-release.googlecode.com/files/R2-Touch_snapshot_20110316.sis</url>
+        <url>http://code.google.com/p/r2-release/downloads/list</url>
         <content>Many changes in this version,sqlite store support and sina weibo support</content>
     </version>
     <version>
