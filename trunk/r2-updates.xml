@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <items>
     <version>
-        <title>R2-Touch_snapshot_20110316</title>
+        <title>R2-Touch_snapshot_20110318</title>
         <url>http://code.google.com/p/r2-release/downloads/list</url>
         <content><![CDATA[ 这个快照版本相比上一个版本有很大的变化，UI上做了非常大的改动，最重要的是加入了sqlite的存储功能，对于一些s60v5的机型需要额外安装sqlite组件。在下个正式版本发布时会详细介绍。另外试探性的加入了sina 微博的支持，可以将笔记（note直接发布到微博），可以通过微博（@jamiesun）来直接反馈问题。试一试吧，后续开发正在进行中。]]></content>
     </version>
