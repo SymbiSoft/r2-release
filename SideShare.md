@@ -1,0 +1,1 @@
+&lt;wiki:gadget url="http://r2-release.googlecode.com/svn/trunk/r2-gadget.xml" width="680" height="560" border="0" /&gt;

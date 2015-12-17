@@ -1,0 +1,288 @@
+# google reader api 介绍 #
+
+
+
+[![](http://r2-release.googlecode.com/svn/trunk/sharesina.png)](http://v.t.sina.com.cn/share/share.php?url=http://code.google.com/p/r2-release/wiki/GoogleReaderApi&title=GoogleReaderApi&appkey=2924220432)
+
+在开发R2过程中总结出来的 api，虽然已经有了pyrfeed的分析在前了，这里提供一个实践版。
+
+
+## 客户端认证 ##
+  * 这一部分是google通用的clientLogin机制
+  * 请求URL:https://www.google.com/accounts/ClientLogin
+  * 方法:POST
+  * 参数:
+    1. accountType=HOSTED\_OR\_GOOGLE
+    1. Email=somebody@gmail.com
+    1. Passwd = youpassword
+    1. service=reader
+    1. source = clientstr (如：J-[R2](https://code.google.com/p/r2-release/source/detail?r=2)-1.0)
+  * 返回：认证文本字符串,auth和sid这是两个比较重要的标识，在以后的api请求中，都必须在header中带有这两个信息,同时cookie中也要设置下SID
+
+  * 代码示范:
+```
+
+    var email = message.email;
+    var passwd = message.passwd;
+    var auth,sid
+    var auth_params = "accountType=HOSTED_OR_GOOGLE&Email="+email+"&Passwd="+passwd+"&service=reader&source=J-MyReader-1.0";
+    var http = new XMLHttpRequest()
+    http.onreadystatechange = function() {
+        if (http.readyState == XMLHttpRequest.DONE) {
+            if(http.status==200){
+                var arrs = http.responseText.split('\n')
+                for(var idx in arrs){
+                    var arr = arrs[idx]
+                    //console.log(arr+"\n\n");
+                    var tmp = arr.split('=');
+                    if(tmp[0]=="Auth"){
+                        auth = tmp[1];
+                    }else if(tmp[0]=="SID"){
+                        sid = tmp[1];
+                    }
+                }
+            }
+        }
+    }
+    http.open("POST", "https://www.google.com/accounts/ClientLogin");
+    http.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    http.setRequestHeader("Content-Length", auth_params.length);
+    http.send( auth_params );
+```
+
+
+## 获取token ##
+  * token使用在提交写请求的时候需要的一个认证信息
+  * 请求URL:https://www.google.com/reader/api/0/token
+  * 方法:GET
+  * 参数:
+    1. client: 客户端名称
+    1. ck：时间戳
+  * 返回token字符串
+  * 代码示范:
+```
+    var auth = //之前clientLogin获得的
+    var sid = //之前clientLogin获得的
+    var token
+    var http = new XMLHttpRequest();
+    http.onreadystatechange = function() {
+        if (http.readyState == XMLHttpRequest.DONE) {
+            if(http.status==200){
+                token = http.responseText
+            }
+        }
+    }
+    http.open("GET", "https://www.google.com/reader/api/0/token?client=scroll&ck="+Number(new Date()))
+    http.setRequestHeader("Authorization","GoogleLogin auth="+auth);
+    http.setRequestHeader("Cookie","SID="+sid);
+    http.send()
+```
+
+## 获取列表Api ##
+
+### 标签列表 ###
+  * 获取你的所有标签信息
+  * 请求URL:https://www.google.com/reader/api/0/tag/list
+  * 方法:GET
+  * 参数:
+    1. client: 客户端名称
+    1. ck：时间戳
+    1. output:输出结果类型，如json
+  * 返回：如果你已登录google,点击查看https://www.google.com/reader/api/0/tag/list?output=json
+  * 代码示范:
+```
+var http = new XMLHttpRequest();
+    http.onreadystatechange = function() {
+        if (http.readyState == XMLHttpRequest.DONE) {
+            if(http.status==200){
+                var result = JSON.parse(http.responseText)['tags']
+                //
+            }
+        }
+    }
+    http.open("GET", “https://www.google.com/reader/api/0/tag/list?output=json”);
+    http.setRequestHeader("Authorization","GoogleLogin auth="+auth);
+    http.setRequestHeader("Cookie","SID="+sid);
+    http.setRequestHeader("accept-encoding", "gzip, deflate")
+    http.send()
+```
+
+
+
+### 订阅列表 ###
+  * 获取你的所有订阅信息
+  * 请求URL:https://www.google.com/reader/api/0/subscription/list
+  * 方法:GET
+  * 参数:
+    1. client: 客户端名称
+    1. ck：时间戳
+    1. output:输出结果类型，如json
+  * 返回：如果你已登录google,点击查看https://www.google.com/reader/api/0/subscription/list?output=json
+  * 代码示范:参考标签列表
+
+### 设置偏好列表 ###
+  * 获取你的所有设置信息
+  * 请求URL:https://www.google.com/reader/api/0/preference/list
+  * 方法:GET
+  * 参数:
+    1. client: 客户端名称
+    1. ck：时间戳
+    1. output:输出结果类型，如json
+  * 返回：设置偏好的键值对列表，如果你已登录google,点击查看https://www.google.com/reader/api/0/preference/list?output=json
+  * 代码示范:参考标签列表
+
+### 未读计数列表 ###
+  * 获取标签和列表的未读数目，在网页版googlereader中，定时运行
+  * 请求URL:https://www.google.com/reader/api/0/unread-count
+  * 方法:GET
+  * 参数:
+    1. client: 客户端名称
+    1. all: 布尔值，是否获取所有标签和列表的未读数
+    1. allcomments：布尔值，是否获取所有评论的未读数
+    1. ck：时间戳
+    1. output:输出结果类型，如json
+  * 返回：如果你已登录google,点击查看https://www.google.com/reader/api/0/unread-count?allcomments=true&output=json&ck=1293954081436&client=scroll
+  * 代码示范：参考标签列表
+
+## 可编辑Api ##
+
+### 标签编辑 ###
+  * 与标签相关的操作，如设置条目为已读或未读状态等
+  * 请求URL:https://www.google.com/reader/api/0/edit-tag
+  * 方法:POST
+  * 参数:
+    1. client: 客户端名称
+    1. T:token字符串
+    1. i:条目id,一般为 tag:google.com,2005:reader/item/e3bf323eb39b90f5
+    1. async：是否异步操作 （true|false）
+    1. s:对应的订阅 如 feed/http://feeds.feedburner.com/ruanyifeng
+    1. r:标示一个remove类型操作，和a参数同时只允许一个存在，比如取消分享，加星
+    1. a:标示一个add类型操作，设置已读，未读状态都是这个,一般为user/-/state/com.google/{state}
+> > 较常用的
+> > ---state:read 设为已读
+> > ---state:kept-unread 设置为未读
+> > ---state:starred 标星操作
+> > ---state:broadcast 共享操作
+> > ---state:tracking-emailed 在发送了email之后发送这个
+
+### 标签删除 ###
+  * 删除一个标签
+  * 请求URL:https://www.google.com/reader/api/0/disable-tag
+  * 方法:POST
+  * 参数:
+    1. client: 客户端名称
+    1. T:token字符串
+    1. s:标签id 格式：user/02968909773540115760/label/{tag}
+    1. t：标签名 {tag}
+
+### 标签新增 ###
+  * 给一个条目新增一个标签
+  * 请求URL:https://www.google.com/reader/api/0/subscription/edit
+  * 方法:POST
+  * 参数:
+    1. client: 客户端名称
+    1. T:token字符串
+    1. ac:edit action类型
+    1. a:要增加的标签id 格式：user/02968909773540115760/label/{tag}
+    1. s:订阅条目的id 如 feed/http://feeds.feedburner.com/ruanyifeng
+
+### 新增订阅 ###
+  * 增加一个新的订阅
+  * 请求URL:https://www.google.com/reader/api/0/subscription/quickadd
+  * 方法:POST
+  * 参数:
+    1. client: 客户端名称
+    1. T:token字符串
+    1. quickadd:订阅url 如 http://feeds.feedburner.com/ruanyifeng
+
+### 取消订阅 ###
+  * 取消一个订阅
+  * 请求URL:https://www.google.com/reader/api/0/subscription/edit
+  * 方法:POST
+  * 参数:
+    1. client: 客户端名称
+    1. T:token字符串
+    1. ac:unsubscribe
+    1. s:订阅id 如feed/http://laiba.tianya.cn/laiba/Feed
+
+
+### 新增评论 ###
+  * 评论必须在你推荐功效一个文章后才能用
+  * 请求URL:https://www.google.com/reader/api/0/comment/edit
+  * 方法:POST
+  * 参数:
+    1. client: 客户端名称
+    1. T:token字符串
+    1. action:addcomment
+    1. i:文章的ID 如 tag:google.com,2005:reader/item/e3bf323eb39b90f5
+
+### 修改评论 ###
+  * 修改自己的评论
+  * 请求URL:https://www.google.com/reader/api/0/comment/edit
+  * 方法:POST
+  * 参数:
+    1. client: 客户端名称
+    1. T:token字符串
+    1. action:editcomment
+    1. i:文章的ID 如 tag:google.com,2005:reader/item/e3bf323eb39b90f5
+    1. ci:评论ID
+    1. comment:修改后的评论内容
+
+
+### 删除评论 ###
+  * 删除自己的评论
+  * 请求URL:https://www.google.com/reader/api/0/comment/edit
+  * 方法:POST
+  * 参数:
+    1. client: 客户端名称
+    1. T:token字符串
+    1. action:deletecomment
+    1. i:文章的ID 如 tag:google.com,2005:reader/item/e3bf323eb39b90f5
+    1. ci:评论ID
+
+
+### 新增笔记 ###
+  * 新增一个笔记
+  * 请求URL:https://www.google.com/reader/api/0/item/edit
+  * 方法:POST
+  * 参数:
+    1. client: 客户端名称
+    1. ck:时间戳
+    1. T:token字符串
+    1. linkify:true
+    1. share:true 是否共享
+    1. snippet:笔记内容
+    1. title:笔记标题
+
+### 删除笔记 ###
+  * 删除一个笔记
+  * 请求URL:https://www.google.com/reader/api/0/item/delete
+  * 方法:POST
+  * 参数:
+    1. client: 客户端名称
+    1. ck:时间戳
+    1. T:token字符串
+    1. i:笔记id
+
+### 笔记评论 ###
+  * 新建一个笔记来对一篇文章进行评论
+  * 请求URL:https://www.google.com/reader/api/0/item/edit
+  * 方法:POST
+  * 参数:
+    1. client: 客户端名称
+    1. ck:时间戳
+    1. T:token字符串
+    1. linkify:false
+    1. share:true
+    1. snippet:引用文章的全文内容
+    1. annotation：评论内容
+    1. srcTitle:源订阅条目的标题
+    1. srcUrl：源订阅条目的feed url
+    1. title:源文章标题
+    1. url:源文章url
+
+
+
+
+
+### 设置偏好 ###
